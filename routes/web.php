@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'Pantalla principal';
+    return view('home');
 });
 
 Route::get('login', function () {
-    return 'Login usuario';
+    return view('catalog.index');
 });
 
 Route::get('logout', function () {
-    return 'Logout usuario';
+    return view('catalog.index');
 });
 
 Route::get('catalog', function () {
-    return 'Listado películas';
+    return view('catalog.index');
 });
 
 Route::get('catalog/show/{id}', function ($id) {
@@ -34,7 +34,7 @@ Route::get('catalog/show/{id}', function ($id) {
 });
 
 Route::get('catalog/create', function () {
-    return 'Añadir película';
+    return view('catalog.index');
 });
 
 Route::get('catalog/edit/{id}', function ($id) {
