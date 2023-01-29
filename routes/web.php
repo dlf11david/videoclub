@@ -18,11 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('login', function () {
-    return view('catalog.index');
+    return view('auth.login');
 });
 
 Route::get('logout', function () {
-    return view('catalog.index');
+    return 'Logout usuario';
 });
 
 Route::get('catalog', function () {
@@ -30,13 +30,13 @@ Route::get('catalog', function () {
 });
 
 Route::get('catalog/show/{id}', function ($id) {
-    return 'Vista detalle película  ' . $id;
+    return view('catalog.show', ['id'=>$id]);
 });
 
 Route::get('catalog/create', function () {
-    return view('catalog.index');
+    return view('catalog.create');
 });
 
 Route::get('catalog/edit/{id}', function ($id) {
-    return 'Modificar película  ' . $id;
+    return view('catalog.edit', ['id'=>$id]);
 });
