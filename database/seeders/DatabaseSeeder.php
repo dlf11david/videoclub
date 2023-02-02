@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -174,6 +175,7 @@ class DatabaseSeeder extends Seeder
     
     private function seedCatalog()
     {
+        DB::table('movies')->delete();
         foreach( $this->arrayPeliculas as $pelicula ) {
             $p = new Movie;
             $p->title = $pelicula['title'];
