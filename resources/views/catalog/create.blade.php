@@ -10,7 +10,7 @@
             </div>
             <div class="card-body" style="padding:30px">
 
-            <form action="{{ url('catalog/create') }}" method="POST">
+            <form action="{{ action('App\Http\Controllers\CatalogController@postCreate') }}" method="POST">
 
                 @csrf
 

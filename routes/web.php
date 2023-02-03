@@ -31,5 +31,6 @@ Route::get('catalog', [CatalogController::class, 'getIndex']);
 Route::get('catalog/show/{id}', [CatalogController::class, 'getShow']);
 
 Route::get('catalog/create', [CatalogController::class, 'getCreate']);
+Route::post('catalog/create', [CatalogController::class, 'postCreate']);
 
 Route::get('catalog/edit/{id}', [CatalogController::class, 'getEdit']);

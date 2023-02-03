@@ -188,9 +188,25 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    private function seedUsers()
+    {
+        DB::table('users')->delete();
+        foreach( $this->arrayPeliculas as $pelicula ) {
+            $p = new Movie;
+            $p->title = $pelicula['title'];
+            $p->year = $pelicula['year'];
+            $p->director = $pelicula['director'];
+            $p->poster = $pelicula['poster'];
+            $p->rented = $pelicula['rented'];
+            $p->synopsis = $pelicula['synopsis'];
+            $p->save();
+        }
+    }
+
     public function run()
     {
         self::seedCatalog();
+        self::seedUsers();
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 }

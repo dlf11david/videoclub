@@ -23,6 +23,12 @@ class CatalogController extends Controller
         return view('catalog.create');
     }
 
+    public function postCreate(Request $request)
+    {
+        $titulo = $request->input('title');
+        dd($titulo);
+    }
+
     public function getEdit($id)
     {
         return view('catalog.edit', ['id'=>$id]);
