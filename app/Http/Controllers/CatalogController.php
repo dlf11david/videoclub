@@ -25,13 +25,35 @@ class CatalogController extends Controller
 
     public function postCreate(Request $request)
     {
-        $titulo = $request->input('title');
-        dd($titulo);
+        $p = new Movie;
+        $p->title = $request->input('title');
+        $p->year = $request->input('year');
+        $p->director = $request->input('director');
+        $p->poster = $request->input('poster');
+        $p->rented = false;
+        $p->synopsis = $request->input('synopsis');
+        $p->save();
+        return redirect()->action([CatalogController::class, 'getIndex']);
     }
 
     public function getEdit($id)
     {
         return view('catalog.edit', ['id'=>$id]);
+    }
+
+    public function putEdit(Request $request, $id)
+    {
+        if( $request->has('title') )
+        {
+            $movie = Movie::findOrFail($id+1);
+            $movie->title = $request->input('title');
+            $movie->year = $request->input('year');
+            $movie->director = $request->input('director');
+            $movie->poster = $request->input('poster');
+            $movie->synopsis = $request->input('synopsis');
+            $movie->save();
+            return view('catalog.show', ['pelicula'=> Movie::findOrFail($id+1) ,'id' => $id]);
+        }
     }
 
 }
