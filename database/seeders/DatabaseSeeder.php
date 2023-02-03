@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -172,6 +174,19 @@ class DatabaseSeeder extends Seeder
             'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
         )
     );
+
+    private $arrayUsuarios = array(
+        array(
+            'name' => 'david1',
+            'email' => 'david1@example.com',
+            'password' => '12345678',
+        ),
+        array(
+            'name' => 'david2',
+            'email' => 'david2@example.com',
+            'password' => '12345678',
+        )
+    );
     
     private function seedCatalog()
     {
@@ -191,14 +206,11 @@ class DatabaseSeeder extends Seeder
     private function seedUsers()
     {
         DB::table('users')->delete();
-        foreach( $this->arrayPeliculas as $pelicula ) {
-            $p = new Movie;
-            $p->title = $pelicula['title'];
-            $p->year = $pelicula['year'];
-            $p->director = $pelicula['director'];
-            $p->poster = $pelicula['poster'];
-            $p->rented = $pelicula['rented'];
-            $p->synopsis = $pelicula['synopsis'];
+        foreach( $this->arrayUsuarios as $usuario ) {
+            $p = new User;
+            $p->name = $usuario['name'];
+            $p->email = $usuario['email'];
+            $p->password = Hash::make($usuario['password']);
             $p->save();
         }
     }
