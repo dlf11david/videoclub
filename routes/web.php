@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\APICatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/', [HomeController::class, 'getHome']);
 // Route::get('logout', function () {
 //     return 'Logout usuario';
 // });
+
+Route::resource('api', APICatalogController::class);
 
 Route::get('catalog', [CatalogController::class, 'getIndex'])->middleware('auth');
 
