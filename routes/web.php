@@ -36,6 +36,10 @@ Route::post('catalog/create', [CatalogController::class, 'postCreate'])->middlew
 Route::get('catalog/edit/{id}', [CatalogController::class, 'getEdit'])->middleware('auth');
 Route::put('catalog/edit/{id}', [CatalogController::class, 'putEdit'])->middleware('auth');
 
+Route::put('catalog/rent/{id}', [CatalogController::class, 'putRent'])->middleware('auth');
+Route::put('catalog/return/{id}', [CatalogController::class, 'putReturn'])->middleware('auth');
+Route::delete('catalog/delete/{id}', [CatalogController::class, 'deleteMovie'])->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'getHome'])->name('home')->middleware('auth');

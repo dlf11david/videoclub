@@ -18,15 +18,41 @@
     <p><b>Resumen: </b>{{$pelicula->synopsis}}</p>
     @if($pelicula->rented)
     <p><b>Estado: </b>Película actualmente alquilada</p>
-    <button type="button" class="btn btn-danger">Devolver película</button>
-    <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}">Editar película</a>
-    <a class="btn btn-light" href="{{ url('/catalog') }}">Volver al listado</a>
+
+    <form action="{{action([App\Http\Controllers\CatalogController::class, 'putReturn'], ['id' => $id])}}" 
+        method="POST" style="display:inline">
+        @method('PUT')
+        @csrf
+        <button type="submit" class="btn btn-danger" style="display:inline">
+            Devolver película
+        </button>
+    </form>
+
     @else
     <p><b>Estado: </b>Película disponible</p>
-    <button type="button" class="btn btn-primary">Alquilar pelicula</button>
+
+    <form action="{{action([App\Http\Controllers\CatalogController::class, 'putRent'], ['id' => $id])}}" 
+        method="POST" style="display:inline">
+        @method('PUT')
+        @csrf
+        <button type="submit" class="btn btn-primary" style="display:inline">
+            Alquilar pelicula
+        </button>
+    </form>
+
+    @endif
+
+    <form action="{{action([App\Http\Controllers\CatalogController::class, 'deleteMovie'], ['id' => $id])}}" 
+        method="POST" style="display:inline">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-danger" style="display:inline">
+            Eliminar pelicula
+        </button>
+    </form>
+
     <a class="btn btn-warning" href="{{ url('/catalog/edit/' . $id ) }}">Editar película</a>
     <a class="btn btn-light" href="{{ url('/catalog') }}">Volver al listado</a>
-    @endif
 
 </div>
 </div>
